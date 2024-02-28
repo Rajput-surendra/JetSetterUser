@@ -1,0 +1,143 @@
+{
+  "project_info": {
+    "project_number": "862406436066",
+    "firebase_url": "https://jetsetter-india-default-rtdb.firebaseio.com",
+    "project_id": "jetsetter-india",
+    "storage_bucket": "jetsetter-india.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862406436066:android:1cef66b86ff76f63c1eabb",
+        "android_client_info": {
+          "package_name": "com.jetsetter.driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862406436066-oksqa4fd87o37u10g295cusodglimalm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jetsetter.driver",
+            "certificate_hash": "56afd2a5968fb5daa0abc5e43cdf73d54c3eca67"
+          }
+        },
+        {
+          "client_id": "862406436066-r8uh3it64jk8lh81d2iqn913odtnukcn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVm0O9d3V3dpmMxugVE1WS6uskTHm7lUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862406436066-p9du4gush12ta4f91j883f1gqgiqfgc6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "862406436066-ijhbof74ug0omv67t73i55e651h41rc1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.jetsetter.user"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862406436066:android:cc91ac8191f8b338c1eabb",
+        "android_client_info": {
+          "package_name": "jetsetter.seller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862406436066-d9rr592np1ie0ujjsoibbopr4q03ua0d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "jetsetter.seller",
+            "certificate_hash": "29006c6415f7b3f40db4ad4ed42c198b5a5dd14d"
+          }
+        },
+        {
+          "client_id": "862406436066-r8uh3it64jk8lh81d2iqn913odtnukcn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVm0O9d3V3dpmMxugVE1WS6uskTHm7lUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862406436066-p9du4gush12ta4f91j883f1gqgiqfgc6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "862406436066-ijhbof74ug0omv67t73i55e651h41rc1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.jetsetter.user"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862406436066:android:f264f60173491760c1eabb",
+        "android_client_info": {
+          "package_name": "jetsetter.user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862406436066-gluhl1048nuptd21cir882eeb4qsl938.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "jetsetter.user",
+            "certificate_hash": "f6893f884182c31ef209ba4d8e86a443e544bafb"
+          }
+        },
+        {
+          "client_id": "862406436066-r8uh3it64jk8lh81d2iqn913odtnukcn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVm0O9d3V3dpmMxugVE1WS6uskTHm7lUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862406436066-p9du4gush12ta4f91j883f1gqgiqfgc6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "862406436066-ijhbof74ug0omv67t73i55e651h41rc1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.jetsetter.user"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
