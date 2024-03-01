@@ -235,15 +235,6 @@ class _CartListViewLayOutState extends State<CartListViewLayOut> {
                                         ),
                                       ),
                                       Text(
-                                        ' Qty: ${cartList[index].productList![0].prVarientList![selectedPos].cartCount} ',
-                                        style: TextStyle(
-                                          color: Theme.of(context).colorScheme.blue,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: textFontSize12,
-                                          fontFamily: 'ubuntu',
-                                        ),
-                                      ),
-                                      Text(
                                         double.parse(cartList[index]
                                             .productList![0]
                                             .prVarientList![selectedPos]
@@ -255,8 +246,7 @@ class _CartListViewLayOutState extends State<CartListViewLayOut> {
                                               .productList![0]
                                               .prVarientList![selectedPos]
                                               .price!),
-                                        )!
-                                            : '',
+                                        )!: '',
                                         style: Theme.of(context)
                                             .textTheme
                                             .overline!
@@ -269,16 +259,20 @@ class _CartListViewLayOutState extends State<CartListViewLayOut> {
                                             fontSize: textFontSize12,
                                             decorationThickness: 2,
                                             letterSpacing: 0.7),
-
                                       ),
-
+                                      Text(
+                                        ' Qty: ${cartList[index].productList![0].prVarientList![selectedPos].cartCount} ',
+                                        style: TextStyle(
+                                          color: Theme.of(context).colorScheme.blue,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: textFontSize12,
+                                          fontFamily: 'ubuntu',
+                                        ),
+                                      ),
                                     ],
                                   ),
-
                                 ],
                               )
-
-
                             ),
 
                             Column(
@@ -356,183 +350,180 @@ class _CartListViewLayOutState extends State<CartListViewLayOut> {
                                                       total;
                                               context.read<CartProvider>().productIds =
                                               (await db.getCart())!;
-
                                               widget.setState();
                                             }
                                           }
                                         },
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
-                                cartList[index].productList![0].availability == '1' ||
-                                    cartList[index].productList![0].stockType == ''
-                                    ? Row(
-                                  children: <Widget>[
-                                    InkWell(
-                                      child: Card(
-                                        shape:
-                                        RoundedRectangleBorder(
-                                          borderRadius:
-                                          BorderRadius.circular(
-                                              circularBorderRadius50),
-                                        ),
-                                        child: const Padding(
-                                          padding:
-                                          EdgeInsets.all(8.0),
-                                          child: Icon(
-                                            Icons.remove,
-                                            size: 15,
-                                          ),
-                                        ),
-                                      ),
-                                      onTap: () {
-                                        if (context
-                                            .read<
-                                            CartProvider>()
-                                            .isProgress ==
-                                            false) {
-                                          context
-                                              .read<CartProvider>()
-                                              .removeFromCartCheckout(
-                                            cartList: cartList,
-                                            context: context,
-                                            index: index,
-                                            promoCode: context
-                                                .read<
-                                                CartProvider>()
-                                                .promoC
-                                                .text,
-                                            remove: false,
-                                            update:
-                                            widget.setState,
-                                          );
-                                        }
-                                      },
-                                    ),
-                                    SizedBox(
-                                      width: 37,
-                                      height: 20,
-                                      child: Stack(
-                                        children: [
-                                          TextField(
-                                            textAlign:
-                                            TextAlign.center,
-                                            readOnly: true,
-                                            style: TextStyle(
-                                              fontSize:
-                                              textFontSize12,
-                                              color:
-                                              Theme.of(context)
-                                                  .colorScheme
-                                                  .fontColor,
-                                            ),
-                                            controller: context
-                                                .read<
-                                                CartProvider>()
-                                                .controller[index],
-                                            decoration:
-                                            const InputDecoration(
-                                              border:
-                                              InputBorder.none,
-                                            ),
-                                          ),
-                                          PopupMenuButton<String>(
-                                            tooltip: '',
-                                            icon: const Icon(
-                                              Icons.arrow_drop_down,
-                                              size: 1,
-                                            ),
-                                            onSelected:
-                                                (String value) {
-                                              context
-                                                  .read<
-                                                  CartProvider>()
-                                                  .addToCartCheckout(
-                                                context:
-                                                context,
-                                                cartList:
-                                                cartList,
-                                                index: index,
-                                                qty: value,
-                                                update: widget
-                                                    .setState,
-                                              );
-                                            },
-                                            itemBuilder:
-                                                (BuildContext
-                                            context) {
-                                              return cartList[index]
-                                                  .productList![0]
-                                                  .itemsCounter!
-                                                  .map<
-                                                  PopupMenuItem<
-                                                      String>>(
-                                                    (String value) {
-                                                  return PopupMenuItem(
-                                                    value: value,
-                                                    child: Text(
-                                                      value,
-                                                      style:
-                                                      TextStyle(
-                                                        color: Theme.of(
-                                                            context)
-                                                            .colorScheme
-                                                            .fontColor,
-                                                        fontFamily:
-                                                        'ubuntu',
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              ).toList();
-                                            },
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    InkWell(
-                                      child: Card(
-                                        shape:
-                                        RoundedRectangleBorder(
-                                          borderRadius:
-                                          BorderRadius.circular(
-                                              circularBorderRadius50),
-                                        ),
-                                        child: const Padding(
-                                          padding:
-                                          EdgeInsets.all(8.0),
-                                          child: Icon(
-                                            Icons.add,
-                                            size: 15,
-                                          ),
-                                        ),
-                                      ),
-                                      onTap: () {
-                                        if (context
-                                            .read<
-                                            CartProvider>()
-                                            .isProgress ==
-                                            false) {
-                                          context
-                                              .read<CartProvider>()
-                                              .addToCartCheckout(
-                                            context: context,
-                                            cartList: cartList,
-                                            index: index,
-                                            qty: (int.parse(cartList[index].qty!) + int.parse(cartList[index].productList![0].qtyStepSize!)).toString(),
-                                            update:
-                                            widget.setState,
-                                          );
-                                        }
-                                      },
-                                    )
-                                  ],
-                                )
-                                    : Container(),
+                                // cartList[index].productList![0].availability == '1' || cartList[index].productList![0].stockType == ''
+                                //     ? Row(
+                                //   children: <Widget>[
+                                //     InkWell(
+                                //       child: Card(
+                                //         shape:
+                                //         RoundedRectangleBorder(
+                                //           borderRadius:
+                                //           BorderRadius.circular(
+                                //               circularBorderRadius50),
+                                //         ),
+                                //         child: const Padding(
+                                //           padding:
+                                //           EdgeInsets.all(8.0),
+                                //           child: Icon(
+                                //             Icons.remove,
+                                //             size: 15,
+                                //           ),
+                                //         ),
+                                //       ),
+                                //       onTap: () {
+                                //         if (context
+                                //             .read<
+                                //             CartProvider>()
+                                //             .isProgress ==
+                                //             false) {
+                                //           context
+                                //               .read<CartProvider>()
+                                //               .removeFromCartCheckout(
+                                //             cartList: cartList,
+                                //             context: context,
+                                //             index: index,
+                                //             promoCode: context
+                                //                 .read<
+                                //                 CartProvider>()
+                                //                 .promoC
+                                //                 .text,
+                                //             remove: false,
+                                //             update:
+                                //             widget.setState,
+                                //           );
+                                //         }
+                                //       },
+                                //     ),
+                                //     SizedBox(
+                                //       width: 37,
+                                //       height: 20,
+                                //       child: Stack(
+                                //         children: [
+                                //           TextField(
+                                //             textAlign:
+                                //             TextAlign.center,
+                                //             readOnly: true,
+                                //             style: TextStyle(
+                                //               fontSize:
+                                //               textFontSize12,
+                                //               color:
+                                //               Theme.of(context)
+                                //                   .colorScheme
+                                //                   .fontColor,
+                                //             ),
+                                //             controller: context
+                                //                 .read<
+                                //                 CartProvider>()
+                                //                 .controller[index],
+                                //             decoration:
+                                //             const InputDecoration(
+                                //               border:
+                                //               InputBorder.none,
+                                //             ),
+                                //           ),
+                                //           PopupMenuButton<String>(
+                                //             tooltip: '',
+                                //             icon: const Icon(
+                                //               Icons.arrow_drop_down,
+                                //               size: 1,
+                                //             ),
+                                //             onSelected:
+                                //                 (String value) {
+                                //               context
+                                //                   .read<
+                                //                   CartProvider>()
+                                //                   .addToCartCheckout(
+                                //                 context:
+                                //                 context,
+                                //                 cartList:
+                                //                 cartList,
+                                //                 index: index,
+                                //                 qty: value,
+                                //                 update: widget
+                                //                     .setState,
+                                //               );
+                                //             },
+                                //             itemBuilder:
+                                //                 (BuildContext
+                                //             context) {
+                                //               return cartList[index]
+                                //                   .productList![0]
+                                //                   .itemsCounter!
+                                //                   .map<
+                                //                   PopupMenuItem<
+                                //                       String>>(
+                                //                     (String value) {
+                                //                   return PopupMenuItem(
+                                //                     value: value,
+                                //                     child: Text(
+                                //                       value,
+                                //                       style:
+                                //                       TextStyle(
+                                //                         color: Theme.of(
+                                //                             context)
+                                //                             .colorScheme
+                                //                             .fontColor,
+                                //                         fontFamily:
+                                //                         'ubuntu',
+                                //                       ),
+                                //                     ),
+                                //                   );
+                                //                 },
+                                //               ).toList();
+                                //             },
+                                //           ),
+                                //         ],
+                                //       ),
+                                //     ),
+                                //     InkWell(
+                                //       child: Card(
+                                //         shape:
+                                //         RoundedRectangleBorder(
+                                //           borderRadius:
+                                //           BorderRadius.circular(
+                                //               circularBorderRadius50),
+                                //         ),
+                                //         child: const Padding(
+                                //           padding:
+                                //           EdgeInsets.all(8.0),
+                                //           child: Icon(
+                                //             Icons.add,
+                                //             size: 15,
+                                //           ),
+                                //         ),
+                                //       ),
+                                //       onTap: () {
+                                //         if (context
+                                //             .read<
+                                //             CartProvider>()
+                                //             .isProgress ==
+                                //             false) {
+                                //           context
+                                //               .read<CartProvider>()
+                                //               .addToCartCheckout(
+                                //             context: context,
+                                //             cartList: cartList,
+                                //             index: index,
+                                //             qty: (int.parse(cartList[index].qty!) + int.parse(cartList[index].productList![0].qtyStepSize!)).toString(),
+                                //             update:
+                                //             widget.setState,
+                                //           );
+                                //         }
+                                //       },
+                                //     )
+                                //   ],
+                                // )
+                                //     : Container(),
                               ],
-                            )
-
+                            ),
                           ],
                         ),
                       ),

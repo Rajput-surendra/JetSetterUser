@@ -1748,9 +1748,9 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
           otp = code;
         },
       ),
-
     );
   }
+
   Widget resendText() {
     return Padding(
       padding: const EdgeInsetsDirectional.only(top: 30.0),
@@ -1771,7 +1771,6 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
               print('___________sdeferfergfer__________');
               resendOTP2();
               // resendOTP2();
-
               //checkNetworkOtp();
             },
             child: Text(
@@ -1816,9 +1815,7 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
     if (isNetworkAvail) {
       Future.delayed(Duration.zero).then(
             (value) => context.read<AuthenticationProvider>().getVerifyUser().then(
-              (
-              value,
-              ) async {
+              (value) async {
             bool? error = value['error'];
             String? msg = value['message'];
             int? receivedOTP = value['data'] ;
@@ -1836,10 +1833,8 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
             }
             if (widget.title == getTranslated(context, 'FORGOT_PASS_TITLE')) {
               if (error!) {
-
               } else {
-                setSnackbar(
-                    getTranslated(context, 'FIRSTSIGNUP_MSG')!, context);
+                setSnackbar(msg!, context);
               }
             }
           },

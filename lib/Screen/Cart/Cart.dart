@@ -13,6 +13,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart';
 import 'package:my_fatoorah/my_fatoorah.dart';
 import 'package:paytm/paytm.dart';
@@ -60,7 +61,7 @@ import 'Widget/setAddress.dart';
 // var selectedNumber;
 // int amt = 5;
 String? dChange;
-  int?  orderIdNew;
+int? orderIdNew;
 
 class Cart extends StatefulWidget {
   final bool fromBottom;
@@ -1168,14 +1169,13 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                     InkWell(
                       onTap: () async {
                         checkout();
-
                         print('_________ssssssssssssssssssss__________');
-                        if(context.read<CartProvider>().addressList.isNotEmpty){
-
-                        }else{
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Please Add Address')));
+                        if (context.read<CartProvider>().addressList.isNotEmpty) {
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Please Add Address First!!')));
                         }
-                      //
+                        //
                         // if (context.read<CartProvider>().isPromoLen == false) {
                         //   if (context.read<CartProvider>().oriPrice > 0) {
                         //     FocusScope.of(context).unfocus();
@@ -1237,7 +1237,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                             borderRadius: BorderRadius.circular(10)),
                         child: const Center(
                             child: Text(
-                          "Checkout",
+                          'Checkout',
                           style: TextStyle(color: colors.whiteTemp),
                         )),
                       ),
@@ -1395,122 +1395,114 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                                                 .cartList),
 
                                                             Card(
-                                                                child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(8.0),
-                                                              child: Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  const Text(
-                                                                    "Tip your delivery partner",
-                                                                    style: TextStyle(
-                                                                        color: colors
-                                                                            .blackTemp,
-                                                                        fontSize:
-                                                                            15,
-                                                                        fontWeight:
-                                                                            FontWeight.bold),
-                                                                  ),
-                                                                  const SizedBox(
-                                                                    height: 3,
-                                                                  ),
-                                                                  const Text(
-                                                                    "Your kindness means a lot! 100% of your tip will go directly to them",
-                                                                    style: TextStyle(
-                                                                        color: colors
-                                                                            .black54,
-                                                                        fontSize:
-                                                                            11,
-                                                                        fontWeight:
-                                                                            FontWeight.bold),
-                                                                  ),
-                                                                  const SizedBox(
-                                                                    height: 3,
-                                                                  ),
-                                                                  Container(
-                                                                    height: 50,
-                                                                    width: MediaQuery.of(context)
-                                                                            .size
-                                                                            .width /
-                                                                        1.1,
-                                                                    child: ListView
-                                                                        .builder(
-                                                                      shrinkWrap:
-                                                                          true,
-                                                                      scrollDirection:
-                                                                          Axis.horizontal,
-                                                                      itemCount:
-                                                                          numbers
-                                                                              .length,
-                                                                      itemBuilder:
-                                                                          (context,
-                                                                              index) {
-                                                                        return InkWell(
-                                                                          onTap:
-                                                                              () {
-                                                                        //    print("${selectedNumber}" + "shdhsjdhf");
-                                                                            if (selectedNumber.toString() ==
-                                                                                numbers[index].toString()) {
-                                                                              finalTotalAmount = finalTotalAmount - int.parse(selectedNumber.toString());
-                                                                             selectedNumber = null;
-
-                                                                              setState(() {});
-                                                                            } else {
-                                                                              setState(() {
-                                                                                amt = 0;
-                                                                                selectedNumber = numbers[index];
-                                                                                print("${selectedNumber}" + "Selected number");
-                                                                                print(finalTotalAmount.toString() +"final Amount");
-                                                                                print(context.read<CartProvider>().totalPrice.toString() +"Total price");
-                                                                                print(context.read<CartProvider>().oriPrice.toString() +"original Amount");
-                                                                                print(double.parse(dChange!).toString() +"deliery Amount");
-                                                                                print(amt.toString() +"donation Amount");
-                                                                                print(int.parse(selectedNumber.toString()).toString() +"selected Amount");
-                                                                                print(context.read<CartProvider>().promoAmt.toString() +"promo Amount");
-
-                                                                                finalTotalAmount = context.read<CartProvider>().oriPrice + double.parse(dChange!) + amt  + int.parse(selectedNumber.toString()) - context.read<CartProvider>().promoAmt;
-                                                                                print(finalTotalAmount.toString() + "FINAL AMOUNT AFTER CALC");
-                                                                                isChecked = false;
-
-                                                                              });
-                                                                            }
-                                                                            // print('____allTotalPrice______${allTotalPrice}_________');
-                                                                          },
-                                                                          child:
-                                                                              Card(
-                                                                            shape:
-                                                                                RoundedRectangleBorder(
-                                                                              borderRadius: BorderRadius.circular(10.0),
-                                                                            ),
-                                                                            elevation:
-                                                                                2,
-                                                                            child:
-                                                                                Container(
-                                                                              decoration: BoxDecoration(
-                                                                                borderRadius: BorderRadius.circular(10),
-                                                                                color: selectedNumber == numbers[index]
-                                                                                    ? colors.primary // Change the color when selected
-                                                                                    : colors.whiteTemp.withOpacity(0.4),
-                                                                              ),
-                                                                              height: 50,
-                                                                              width: 70,
-                                                                              child: Center(
-                                                                                  child: Text(
-                                                                                '₹${numbers[index]}',
-                                                                                style: TextStyle(color: selectedNumber == numbers[index] ? colors.whiteTemp : colors.blackTemp, fontSize: 18),
-                                                                              )),
-                                                                            ),
-                                                                          ),
-                                                                        );
-                                                                      },
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        8.0),
+                                                                child: Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    const Text(
+                                                                      'Tip your delivery partner',
+                                                                      style: TextStyle(
+                                                                          color: colors
+                                                                              .blackTemp,
+                                                                          fontSize:
+                                                                              15,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
                                                                     ),
-                                                                  ),
-                                                                ],
+                                                                    const SizedBox(
+                                                                      height: 3,
+                                                                    ),
+                                                                    const Text(
+                                                                      'Your kindness means a lot! 100% of your tip will go directly to them',
+                                                                      style: TextStyle(
+                                                                          color: colors
+                                                                              .black54,
+                                                                          fontSize:
+                                                                              11,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
+                                                                    ),
+                                                                    const SizedBox(
+                                                                      height: 3,
+                                                                    ),
+                                                                    Container(
+                                                                      height: 50,
+                                                                      width: MediaQuery.of(context).size.width / 1.1,
+                                                                      child: ListView.builder(
+                                                                        shrinkWrap: true,
+                                                                        scrollDirection: Axis.horizontal,
+                                                                        itemCount: numbers.length,
+                                                                        itemBuilder: (context, index) {
+                                                                          return InkWell(
+                                                                            onTap:
+                                                                                () {
+                                                                               //    print("${selectedNumber}" + "shdhsjdhf");
+                                                                              if(context.read<CartProvider>().selAddress == null || context.read<CartProvider>().selAddress == ""){
+                                                                                print("in this page}===========");
+                                                                                Fluttertoast.showToast(msg: "Please Add Address");
+                                                                              } else{
+                                                                                print("hererrrerereer}===========");
+                                                                                if (selectedNumber.toString() == numbers[index].toString()) {
+                                                                                  finalTotalAmount = finalTotalAmount - int.parse(selectedNumber.toString());
+                                                                                  selectedNumber = null;
+                                                                                  setState(() {});
+                                                                                } else {
+                                                                                  setState(() {
+                                                                                    amt = 0;
+                                                                                    selectedNumber = numbers[index];
+                                                                                    print('${selectedNumber}' + "Selected number");
+                                                                                    print(finalTotalAmount.toString() + "final Amount");
+                                                                                    print(context.read<CartProvider>().totalPrice.toString() + "Total price");
+                                                                                    print(context.read<CartProvider>().oriPrice.toString() + "original Amount");
+                                                                                    print(double.parse(dChange!.toString() ??  "0.0").toString() + "deliery Amount");
+                                                                                    print(amt.toString() + "donation Amount");
+                                                                                    print(int.parse(selectedNumber.toString()).toString() + "selected Amount");
+                                                                                    print(context.read<CartProvider>().promoAmt.toString() + "promo Amount");
+                                                                                    finalTotalAmount = context.read<CartProvider>().oriPrice + double.parse(dChange!) + amt + int.parse(selectedNumber.toString()) - context.read<CartProvider>().promoAmt;
+                                                                                    print(finalTotalAmount.toString() + 'FINAL AMOUNT AFTER CALC');
+                                                                                    isChecked = false;
+                                                                                  });
+                                                                                }
+                                                                              }
+                                                                              // print('____allTotalPrice______${allTotalPrice}_________');
+                                                                            },
+                                                                            child:
+                                                                                Card(
+                                                                              shape: RoundedRectangleBorder(
+                                                                                borderRadius: BorderRadius.circular(10.0),
+                                                                              ),
+                                                                              elevation: 2,
+                                                                              child: Container(
+                                                                                decoration: BoxDecoration(
+                                                                                  borderRadius: BorderRadius.circular(10),
+                                                                                  color: selectedNumber == numbers[index]
+                                                                                      ? colors.primary // Change the color when selected
+                                                                                      : colors.whiteTemp.withOpacity(0.4),
+                                                                                ),
+                                                                                height: 50,
+                                                                                width: 70,
+                                                                                child: Center(
+                                                                                  child: Text(
+                                                                                    '₹${numbers[index]}',
+                                                                                    style: TextStyle(color: selectedNumber == numbers[index] ? colors.whiteTemp : colors.blackTemp, fontSize: 18),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                               ),
-                                                            )),
+                                                            ),
                                                             // Card(
                                                             //     child: Padding(
                                                             //       padding: const EdgeInsets.all(8.0),
@@ -1623,7 +1615,6 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                                             //
                                                             //   ),
                                                             // ),
-
                                                             Card(
                                                                 child: Column(
                                                               crossAxisAlignment:
@@ -1658,29 +1649,36 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                                                         "#############");
                                                                     setState(
                                                                         () {
-                                                                          print(isChecked.toString() + "ISCHECKED");
+                                                                      print(isChecked
+                                                                              .toString() +
+                                                                          "ISCHECKED");
                                                                       isChecked =
                                                                           newValue!;
 
-                                                                      if(newValue){
+                                                                      if (newValue) {
                                                                         amt = 5;
-                                                                        finalTotalAmount  = context.read<CartProvider>().oriPrice + double.parse(dChange!) +amt   - context.read<CartProvider>().promoAmt;
-
-                                                                      }else{
-                                                                        finalTotalAmount  = context.read<CartProvider>().oriPrice + double.parse(dChange!)   - context.read<CartProvider>().promoAmt;
+                                                                        finalTotalAmount = context.read<CartProvider>().oriPrice +
+                                                                            double.parse(dChange!) +
+                                                                            amt -
+                                                                            context.read<CartProvider>().promoAmt;
+                                                                      } else {
+                                                                        finalTotalAmount = context.read<CartProvider>().oriPrice +
+                                                                            double.parse(dChange!) -
+                                                                            context.read<CartProvider>().promoAmt;
 
                                                                         amt = 0;
                                                                       }
 
-                                                                      if(selectedNumber ==null){
-
-                                                                      }else{
-                                                                      finalTotalAmount = context.read<CartProvider>().oriPrice + double.parse(dChange!) +amt  + int.parse(selectedNumber.toString()) - context.read<CartProvider>().promoAmt;
-
+                                                                      if (selectedNumber ==
+                                                                          null) {
+                                                                      } else {
+                                                                        finalTotalAmount = context.read<CartProvider>().oriPrice +
+                                                                            double.parse(dChange!) +
+                                                                            amt +
+                                                                            int.parse(selectedNumber.toString()) -
+                                                                            context.read<CartProvider>().promoAmt;
                                                                       }
-
-                                                                      }
-                                                                        );
+                                                                    });
                                                                   },
                                                                   controlAffinity:
                                                                       ListTileControlAffinity
@@ -1735,11 +1733,15 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          finalTotalAmount != 0.0
+                                                          finalTotalAmount !=
+                                                                  0.0
                                                               //0.0 - context.read<CartProvider>().promoAmt
                                                               ? Text(
-                                                                //  '${finalTotalAmount + double.parse(dChange ?? "0.0") - context.read<CartProvider>().promoAmt /*-double.parse( '${context.read<CartProvider>().usedBalance} ')*/} ',
-                                                           finalTotalAmount.toString(),       style:
+                                                                  //  '${finalTotalAmount + double.parse(dChange ?? "0.0") - context.read<CartProvider>().promoAmt /*-double.parse( '${context.read<CartProvider>().usedBalance} ')*/} ',
+                                                                  finalTotalAmount
+                                                                      .toStringAsFixed(
+                                                                          2),
+                                                                  style:
                                                                       TextStyle(
                                                                     color: Theme.of(
                                                                             context)
@@ -1766,11 +1768,9 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                                               //     'ubuntu',
                                                               //   ),
                                                               // )
-                                                          
-                                                              :
-                                                          
-                                                          Text(
-                                                                  '${context.read<CartProvider>().totalPrice + double.parse(dChange ?? "0.0")  /*-double.parse( '${context.read<CartProvider>().usedBalance} ')*/} ',
+
+                                                              : Text(
+                                                                  '${context.read<CartProvider>().totalPrice + double.parse(dChange ?? "0.0") /*-double.parse( '${context.read<CartProvider>().usedBalance} ')*/} ',
                                                                   style:
                                                                       TextStyle(
                                                                     color: Theme.of(
@@ -2013,7 +2013,11 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                                                           .oriPrice !=
                                                                       0) {
                                                                     // await getDeliveryCharge();
-                                                                    confirmDialog(allTotalPrice, finalTotalAmount, selectedNumber,amt,
+                                                                    confirmDialog(
+                                                                      allTotalPrice,
+                                                                      finalTotalAmount,
+                                                                      selectedNumber,
+                                                                      amt,
                                                                     );
                                                                   }
                                                                 }
@@ -3067,17 +3071,21 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
       // print('___ssss_____ggggg__${request.fields}_________');
       try {
         request.fields[USER_ID] = CUR_USERID!;
-        request.fields[deliveryTri] = selectedNumber == null ? "0.0":selectedNumber.toString();
+        request.fields[deliveryTri] =
+            selectedNumber == null ? "0.0" : selectedNumber.toString();
         request.fields[Donate] = amt.toString();
         request.fields[MOBILE] = mob;
         request.fields[PRODUCT_VARIENT_ID] = varientId!;
         request.fields[QUANTITY] = quantity!;
         request.fields[LATITUDE] = homelat.toString();
         request.fields[LONGITUDE] = homeLong.toString();
-        request.fields[TOTAL] = context.read<CartProvider>().oriPrice.toString();
-        request.fields[FINAL_TOTAL] = context.read<CartProvider>().totalPrice.toString();
+        request.fields[TOTAL] =
+            context.read<CartProvider>().oriPrice.toString();
+        request.fields[FINAL_TOTAL] =
+            context.read<CartProvider>().totalPrice.toString();
         request.fields[DEL_CHARGE] = dChange.toString();
-        request.fields[TAX_PER] = context.read<CartProvider>().taxPer.toString();
+        request.fields[TAX_PER] =
+            context.read<CartProvider>().taxPer.toString();
         request.fields[PAYMENT_METHOD] = "${payVia}";
         if (tempCartListForTestCondtion[0].productType != 'digital_product') {
           request.fields[ADD_ID] = context.read<CartProvider>().selAddress!;
@@ -3145,14 +3153,13 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
           String? msg = getdata['message'];
 
           if (!error) {
-
             orderId = getdata['order_id'].toString();
             orderIdNew = getdata['order_id'];
-           // orderIdNew = getdata['order_id'].toString();
-                prefs.setInt('orderId',orderIdNew?? 0);
+            // orderIdNew = getdata['order_id'].toString();
+            prefs.setInt('orderId', orderIdNew ?? 0);
             print('____Som___orderId___${orderIdNew}_________');
 
-            Routes.navigateToOrderSuccessScreen(context,orderId);
+            Routes.navigateToOrderSuccessScreen(context, orderId);
             if (context.read<CartProvider>().payMethod ==
                 getTranslated(context, 'RAZORPAY_LBL')) {
               razorpayPayment(orderId, msg);
@@ -3183,7 +3190,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
             } else {
               context.read<UserProvider>().setCartCount('0');
               clearAll();
-              Routes.navigateToOrderSuccessScreen(context,orderId);
+              Routes.navigateToOrderSuccessScreen(context, orderId);
             }
           } else {
             setSnackbar(msg!, _checkscaffoldKey);
@@ -3274,7 +3281,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
             if (redirect) {
               context.read<UserProvider>().setCartCount('0');
               clearAll();
-              Routes.navigateToOrderSuccessScreen(context,"");
+              Routes.navigateToOrderSuccessScreen(context, "");
             }
           } else {
             setSnackbar(msg1!, _checkscaffoldKey);
@@ -3916,11 +3923,14 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
       'Cookie': 'ci_session=bd50f37c5fbd0a28815764fc266e54489c4f0bf4'
     };
     //print(context.read<CartProvider>().addressList[context.read<CartProvider>().selectedAddress!].id.toString() + "ADDRESS ID");
-    try{
+    try {
       var request = http.MultipartRequest(
           'POST', Uri.parse('${baseUrl}get_delivery_charge_distacee'));
       request.fields.addAll({
-        'address_id': context.read<CartProvider>().addressList[context.read<CartProvider>().selectedAddress!].id
+        'address_id': context
+            .read<CartProvider>()
+            .addressList[context.read<CartProvider>().selectedAddress!]
+            .id
             .toString(),
         'seller_id': sellerId.toString()
       });
@@ -3937,11 +3947,9 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
       } else {
         print(response.reasonPhrase);
       }
-    }catch(stacktrace){
-     // dChange = "0";
-
+    } catch (stacktrace) {
+      // dChange = "0";
     }
-
   }
 
   void bankTransfer() {

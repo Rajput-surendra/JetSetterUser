@@ -193,10 +193,10 @@ class _DashboardPageState extends State<Dashboard>
       },
       child: Scaffold(
         extendBodyBehindAppBar: false,
-
         extendBody: true,
         backgroundColor: colors.primary1,
-        appBar: _selBottom == 0
+        appBar:
+        _selBottom == 0
             ? _getAppBar()
             : PreferredSize(
                 preferredSize: Size.zero,
@@ -339,6 +339,7 @@ class _DashboardPageState extends State<Dashboard>
                       homelat = result.geometry!.location.lat;
                       homeLong = result.geometry!.location.lng;
                     });
+                    print('lat long in dashboard ${homelat} ${homeLong}===========');
                     getCityFromLatLng(result.geometry!.location.lat,
                         result.geometry!.location.lng);
                     Navigator.of(context).pop();
@@ -395,7 +396,8 @@ class _DashboardPageState extends State<Dashboard>
     } else if (_selBottom == 3) {
       title = getTranslated(context, 'PROFILE');
     }
-    final appBar = AppBar(
+    final
+    appBar = AppBar(
       //toolbarHeight: 200,
       elevation: 0,
       centerTitle: false,

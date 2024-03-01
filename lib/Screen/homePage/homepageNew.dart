@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage>
   CurrentOrderModel? currentOrder;
 
   getCurrentOrder() async {
-    print("user id: ${CUR_USERID}");
+    print('user id: ${CUR_USERID}');
     var headers = {
       'Cookie': 'ci_session=5848bdf90bb6294c12c65bb8e71d455f1eff45c1'
     };
@@ -146,7 +146,6 @@ class _HomePageState extends State<HomePage>
     if (response.statusCode == 200) {
       var result = await response.stream.bytesToString();
       var finalRsult = CurrentOrderModel.fromJson(json.decode(result));
-
       setState(() {
         currentOrder = finalRsult;
         print('____Som___ffffff___${finalRsult}_________');
@@ -160,6 +159,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     // //_handleIncomingLinks();
+    print("hhhhhhhhhhhhhhhhhhhhh=========${homelat} ${homeLong}===========");
     getCurrentOrder();
     // getImagesApi();
     // getImagesThirdSliderApi();
@@ -225,7 +225,6 @@ class _HomePageState extends State<HomePage>
     orderPro = Provider.of<OrderProvider>(context, listen: false);
     await getCurrentOrder();
     getOrderId();
-
     getImagesApi();
     getImagesThirdSliderApi();
     getImagesFourthdSliderApi();
@@ -253,7 +252,6 @@ class _HomePageState extends State<HomePage>
         callApi();
       },
     );
-
     buttonController = AnimationController(
       duration: const Duration(milliseconds: 2000),
       vsync: this,
@@ -281,26 +279,25 @@ class _HomePageState extends State<HomePage>
       },
     );
   }
+
   getOrderId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
      orderIdNew = prefs.getInt('orderId');
      print('____Som____orderIdNew__${orderIdNew}_________');
     await orderPro!.getOrder(context, orderIdNew.toString(),true);
     return orderIdNew;
-
   }
+
   @override
   Widget build(BuildContext context) {
-    print("${cityName}" + "((((((((((((((((((((((((((");
-    print("${cityName}" + "((((((((((((((((((((((((((");
-
+    print('${cityName}' + "((((((((((((((((((((((((((");
+    print('${homelat} ${homeLong}' + "latlongg((((((((");
     context.read<HomePageProvider>().getSliderImages();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.dark,
     ));
     return Scaffold(
-
         ///backgroundColor: colors.primary1,
         key: _scaffoldKey,
         body: WillPopScope(
@@ -427,7 +424,7 @@ class _HomePageState extends State<HomePage>
                                             padding: EdgeInsets.only(
                                                 left: 10.0, top: 5),
                                             child: Text(
-                                              "All Restaurant",
+                                              'All Restaurant',
                                               style: TextStyle(
                                                   color: colors.blackTemp,
                                                   fontWeight: FontWeight.bold,
@@ -694,7 +691,6 @@ class _HomePageState extends State<HomePage>
     //     SEARCH: _controller.text.trim(),
     //   };
     // }
-
     apiBaseHelper.postAPICall(getSellerApi, parameter).then(
       (getdata) {
         bool error = getdata['error'];
@@ -802,7 +798,7 @@ class _HomePageState extends State<HomePage>
   Future getUserCurrentLocation() async {
     var status = await Permission.location.request();
     if (status.isDenied) {
-      setSnackbar1("Permision is requiresd");
+      setSnackbar1('Permision is requiresd');
     } else if (status.isGranted) {
       await Geolocator.getCurrentPosition(
               desiredAccuracy: LocationAccuracy.high)
@@ -824,7 +820,7 @@ class _HomePageState extends State<HomePage>
   _getAddressFromLatLng() async {
     await getUserCurrentLocation().then((_) async {
       try {
-        print("Addressss function");
+        print('Addressss function');
         List<Placemark> p = await placemarkFromCoordinates(
             currentLocation!.latitude, currentLocation!.longitude);
         Placemark place = p[0];
@@ -1038,7 +1034,7 @@ class _HomePageState extends State<HomePage>
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image.network(
-                                "${sellerList[i].seller_profile}",
+                                '${sellerList[i].seller_profile}',
                                 fit: BoxFit.fill,
                               )),
                         ),
@@ -1059,7 +1055,7 @@ class _HomePageState extends State<HomePage>
                                     children: [
                                       Center(
                                           child: Text(
-                                        "${sellerList[i].store_name}",
+                                        '${sellerList[i].store_name}',
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 2,
                                         textAlign: TextAlign.center,
@@ -1078,7 +1074,7 @@ class _HomePageState extends State<HomePage>
                                 child: Align(
                                   alignment: Alignment.topLeft,
                                   child: Text(
-                                    "${sellerList[i].store_description}",
+                                    '${sellerList[i].store_description}',
                                    overflow: TextOverflow.ellipsis,maxLines: 1,textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.normal),
                                   ),
                                 ),
@@ -1097,7 +1093,7 @@ class _HomePageState extends State<HomePage>
                                     width: 3,
                                   ),
                                   Text(
-                                    "${sellerList[i].seller_rating}",
+                                    '${sellerList[i].seller_rating}',
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 2,
                                     textAlign: TextAlign.center,

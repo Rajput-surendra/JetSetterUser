@@ -90,21 +90,21 @@ class GetContent extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Tip your delivery partner",
+                  Text('Tip your delivery partner',
                     style: Theme.of(context).textTheme.subtitle2!.copyWith(
                       color: Theme.of(context).colorScheme.lightBlack2,
                       fontFamily: 'ubuntu',
                     ),
                   ),
                   selectedNumber  == null ?  Text(
-                    "₹ 0.0",
+                    '₹ 0.0',
                     style: Theme.of(context).textTheme.subtitle2!.copyWith(
                       color: Theme.of(context).colorScheme.fontColor,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'ubuntu',
                     ),
                   ):Text(
-                    "₹ ${selectedNumber}",
+                    '₹ ${selectedNumber}',
                     style: Theme.of(context).textTheme.subtitle2!.copyWith(
                       color: Theme.of(context).colorScheme.fontColor,
                       fontWeight: FontWeight.bold,
